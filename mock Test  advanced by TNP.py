@@ -5,6 +5,20 @@ from fpdf import FPDF
 import os
 
 st.set_page_config(page_title="College Result Portal", layout="wide")
+audio_file = open("music.mp3", "rb")
+audio_bytes = audio_file.read()
+
+st.markdown("""
+<style>
+div[data-testid="stAudio"] {
+    width: 200px;   /* size small */
+    opacity: 0.2;   /* almost hidden */
+    margin-top: -20px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.audio(audio_bytes, format="audio/mp3")
 # ---------------- ANIMATED COLLEGE HEADER ----------------
 st.markdown("""
 <style>
@@ -208,3 +222,44 @@ st.plotly_chart(fig2, use_container_width=True)
 # ---------------- ALL STUDENTS ----------------
 st.markdown("## 🧑‍🎓 All Students Data")
 st.dataframe(df)
+st.markdown("""
+<style>
+.footer {
+    position: relative;
+    padding: 20px;
+    margin-top: 50px;
+    text-align: center;
+    color: #00ffd5;
+    border-top: 1px solid #00ffd5;
+    animation: fadeIn 3s ease-in;
+}
+
+.footer-text {
+    font-size: 16px;
+    color: #cccccc;
+}
+
+.footer-highlight {
+    color: #00ffd5;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ffd5;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
+
+<div class="footer">
+    <div class="footer-text">
+        🚀 Powered by <span class="footer-highlight">Data Science & AI</span><br><br>
+        
+        "Data is the new oil, but insight is the real power." 📊<br><br>
+        
+        Built with ❤️ using Python, Streamlit & Analytics<br>
+        
+        🎓 Technocrats Institute Of Technology Bhopal
+    </div>
+</div>
+""", unsafe_allow_html=True)
