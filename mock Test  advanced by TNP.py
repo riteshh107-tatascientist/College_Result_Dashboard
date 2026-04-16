@@ -183,8 +183,8 @@ if roll:
             pdf.cell(0, 10, "Student Result Report", ln=True)
 
             for col in df.columns:
-                pdf.cell(0, 8, f"{col}: {s[col]}", ln=True)
-
+                if col.lower() != "email":
+                    pdf.cell(0, 8, f"{col}: {s[col]}", ln=True)
             pdf.output("result.pdf")
             with open("result.pdf", "rb") as f:
                 st.download_button("Download PDF", f, file_name="result.pdf")
@@ -221,7 +221,8 @@ st.plotly_chart(fig2, use_container_width=True)
 
 # ---------------- ALL STUDENTS ----------------
 st.markdown("## 🧑‍🎓 All Students Data")
-st.dataframe(df)
+safe_df = df.drop(columns=["Email"], errors="ignore")
+st.dataframe(safe_df)
 st.markdown("""
 <style>
 .footer {
