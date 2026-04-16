@@ -3,15 +3,6 @@ import pandas as pd
 import plotly.express as px
 from fpdf import FPDF
 import os
-import mysql.connector
-
-def get_connection():
-    return mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASS"),
-        database=os.getenv("DB_NAME")
-    )
 
 st.set_page_config(page_title="College Result Portal", layout="wide")
 audio_file = open("music.mp3", "rb")
@@ -121,13 +112,7 @@ def load_data(file):
     return df
 
 file_path = "Mock_sunday_Test.csv"
-try:
-    conn = get_connection()
-    df = pd.read_sql("SELECT * FROM students", conn)
-    conn.close()
-except Exception as e:
-    st.error("Database connection failed")
-    st.stop()
+df = load_data(file_path)
 
 # ---------------- ADMIN UPLOAD ----------------
 if admin_logged:
