@@ -6,7 +6,7 @@ This project allows students to check their results and provides powerful data i
 ---
 
 ## 🚀 Live Demo
-👉 (Add your Streamlit Cloud link here)
+👉 (https://collegeresultdashboard-kacnayhpre6an56dvbev6i.streamlit.app/)
 
 ---
 
